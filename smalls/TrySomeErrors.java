@@ -84,12 +84,50 @@ final class FellowExceptions {
 
         try {
             list.add(10);
+        } catch (Exception e) {
+            System.out.println("Some exception happened: " + e.getMessage());
         } finally {
-//            e.printStackTrace();
             Util.printWithThreadNamePrefix("Running finally!");
         }
+        System.out.println("This should be visible.");
+    }
+
+    public static void finallyWithSystemExit() {
+        try {
+            System.out.println(1 / 0);
+        } catch (Exception e) {
+            System.out.println("Some exception: " + e.getMessage());
+            System.exit(0);
+        } finally {
+            System.out.println("You should see me despite the System.exit!");
+        }
+        System.out.println("You shouldn't see me!");
     }
 }
+
+
+public class TrySomeErrors {
+
+    public static void main(String[] args) {
+        trySomeExceptions();
+        trySomeErrors();
+//         ThreadRipper.letItRip();
+    }
+
+    private static void trySomeErrors() {
+//        FellowErrors.outOfMemoryError();
+    }
+
+    private static void trySomeExceptions() {
+        FellowExceptions.arithmeticException();
+        FellowExceptions.classCastException();
+        FellowExceptions.tryExceptionWithFinallyBlock();
+        FellowExceptions.finallyWithSystemExit();
+    }
+
+    protected void finalize() throws Throwable {}
+}
+
 
 class ThreadRipper implements Runnable {
 
@@ -112,25 +150,5 @@ class ThreadRipper implements Runnable {
     public void run() {
         FellowErrors.outOfMemoryErrorExtreme();
         Util.printWithThreadNamePrefix("I survived. Congrats if you saw this message!");
-    }
-}
-
-
-public class TrySomeErrors {
-
-    public static void main(String[] args) {
-        trySomeExceptions();
-        trySomeErrors();
-        // ThreadRipper.letItRip();
-    }
-
-    private static void trySomeErrors() {
-//        FellowErrors.outOfMemoryError();
-    }
-
-    private static void trySomeExceptions() {
-        FellowExceptions.arithmeticException();
-        FellowExceptions.classCastException();
-        FellowExceptions.tryExceptionWithFinallyBlock();
     }
 }
