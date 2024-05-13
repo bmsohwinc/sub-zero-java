@@ -13,6 +13,15 @@ public class AllSetVariants {
         Set<Integer> hashSet = new HashSet<>();
         Set<Integer> linkedHashSet = new LinkedHashSet<>();
         Set<Integer> treeSet = new TreeSet<>();
+
+        // TreeSet allows nulls only if the comparator allows for it.
+//        Set<Integer> treeSet = new TreeSet<>((a, b) -> {
+//            if (a == null && b == null) return 0;
+//            if (a == null) return 1;
+//            if (b == null) return -1;
+//            return a > b ? 1 : -1;
+//        });
+
         Set<Particle> enumSet = EnumSet.allOf(Particle.class);
 
         addItemsTo(hashSet);
