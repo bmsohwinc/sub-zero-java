@@ -1,11 +1,11 @@
 # All things Regex
-- Regex is a sequence of characters that match a search pattern
+- Regex is a sequence of characters that define a search pattern
 
 ## Theory
 ### Metacharacters
 1. `^a`: Match strings starting with `a`
 2. `b$`: Match strings ending with `b`
-3. `b.r`: Match any character at `.`
+3. `b.r`: Match any character at `.` (except `\newline`)
 4. `b|a`: Match either `a` or `b`
 5. `\`: Skip few escape sequences or special characters
 
